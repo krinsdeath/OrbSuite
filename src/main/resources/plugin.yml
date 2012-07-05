@@ -1,0 +1,10 @@
+name: OrbSuite
+main: net.krinsoft.orbsuite.OrbCore
+version: maven-version-number
+author: krinsdeath
+
+commands:
+  orbsuite:
+    aliases: [orb]
+    description: OrbSuite's top level command.
+    usage: /<command> ...
