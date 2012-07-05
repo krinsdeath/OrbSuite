@@ -26,6 +26,11 @@ public class OrbCheckCommand extends OrbCommand {
     public void runCommand(CommandSender sender, List<String> args) {
         if (sender instanceof ConsoleCommandSender && args.size() < 1) {
             error(sender, "Must supply a target.");
+            return;
+        }
+        if (args.size() == 1 && !sender.hasPermission("orbsuite.check.other")) {
+            error(sender, "You don't have permission to check another user's balance.");
+            return;
         }
         String target = (args.size() == 0 ? sender.getName() : args.get(0));
         int points = plugin.getDb().check(target);

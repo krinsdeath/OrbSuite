@@ -8,3 +8,8 @@ commands:
     aliases: [orb]
     description: OrbSuite's top level command.
     usage: /<command> ...
+    
+permissions:
+  orbsuite.check.other:
+    description: Allows a user to check another user's balance.
+    default: op
