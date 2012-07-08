@@ -86,6 +86,12 @@ public class OrbCore extends JavaPlugin {
         getLogger().info("Debug mode: " + (val ? "enabled" : "disabled"));
     }
 
+    public void debug(String message) {
+        if (isDebugging) {
+            getLogger().info("[Debug] " + message);
+        }
+    }
+
     private void initializeConfiguration() {
         configFile = new File(getDataFolder(), "config.yml");
         if (!configFile.exists()) {

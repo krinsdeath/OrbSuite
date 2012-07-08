@@ -26,7 +26,9 @@ public class Database {
     public Database(OrbCore instance) {
         plugin = instance;
         if (connect()) {
-            initialize();
+            if (initialize()) {
+                plugin.debug("Database initialized successfully.");
+            }
         }
     }
 
@@ -74,7 +76,7 @@ public class Database {
         return false;
     }
 
-    private void initialize() {
+    private boolean initialize() {
         try {
             if (connect()) {
                 String query = "CREATE TABLE IF NOT EXISTS orbsuite_players (" +
@@ -89,9 +91,11 @@ public class Database {
             }
             prepare("SELECT * FROM orbsuite_players WHERE name LIKE ? LIMIT 1;");
             prepare("REPLACE INTO orbsuite_players (name, experience) VALUES(?, ?);");
+            return true;
         } catch (SQLException e) {
             plugin.getLogger().warning("An error occurred while initializing the tables: " + e.getMessage());
         }
+        return false;
     }
 
     public PreparedStatement prepare(String query) {
