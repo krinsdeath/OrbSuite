@@ -4,7 +4,6 @@ import net.krinsoft.orbsuite.OrbCore;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.permissions.PermissionDefault;
 
 import java.util.List;
@@ -31,7 +30,6 @@ public class OrbWithdrawCommand extends OrbCommand {
             return;
         }
         Player player = (Player) sender;
-        int total = player.getTotalExperience();
         int arg;
         try {
             arg = Integer.parseInt(args.get(0));
@@ -47,5 +45,6 @@ public class OrbWithdrawCommand extends OrbCommand {
         player.giveExp(withdrawal);
         message(sender, "Successfully withdrew " + withdrawal + " experience.");
         message(sender, "Total in storage: " + plugin.getDb().check(player.getName()));
+        message(sender, "You have " + player.getTotalExperience() + " experience remaining.");
     }
 }

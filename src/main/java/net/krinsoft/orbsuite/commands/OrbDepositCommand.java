@@ -53,6 +53,6 @@ public class OrbDepositCommand extends OrbCommand {
         int deposit = plugin.getDb().deposit(player.getName(), arg);
         message(sender, "Successfully deposited " + arg + " experience.");
         message(sender, "Total in storage: " + deposit);
-
+        message(sender, "You have " + player.getTotalExperience() + " experience remaining.");
     }
 }

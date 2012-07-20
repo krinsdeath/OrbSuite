@@ -50,7 +50,6 @@ public class OrbCore extends JavaPlugin {
     public void onDisable() {
         long time = System.nanoTime();
         getServer().getScheduler().cancelTasks(this);
-        database.save();
         database.close();
         time = System.nanoTime() - time;
         getLogger().info("Disabled successfully in " + time + "ns. (" + (time / 1000000) + "ms)");

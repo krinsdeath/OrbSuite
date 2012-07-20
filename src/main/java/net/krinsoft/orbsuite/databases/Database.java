@@ -50,6 +50,7 @@ public class Database {
 
     public void close() {
         try {
+            save();
             for (PreparedStatement prep : prepared.values()) {
                 prep.close();
             }

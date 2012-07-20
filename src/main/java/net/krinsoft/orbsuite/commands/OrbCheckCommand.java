@@ -3,6 +3,7 @@ package net.krinsoft.orbsuite.commands;
 import net.krinsoft.orbsuite.OrbCore;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionDefault;
 
 import java.util.List;
@@ -38,6 +39,10 @@ public class OrbCheckCommand extends OrbCommand {
             message(sender, (target.equals(sender.getName()) ? "You have " : target + " has ") + points + " experience point" + (points > 1 ? "s" : "") + " stored.");
         } else {
             message(sender, (target.equals(sender.getName()) ? "You have " : target + " has ") + "no points stored.");
+        }
+        Player p = plugin.getServer().getPlayer(target);
+        if (p != null) {
+            message(sender, p.getName() + " has " + p.getTotalExperience() + " experience.");
         }
     }
 }
