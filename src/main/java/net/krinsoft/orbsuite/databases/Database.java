@@ -37,10 +37,10 @@ public class Database {
         try {
             for (String name : new HashSet<String>(players.keySet())) {
                 prep.setString(1, name);
-                prep.setInt(2, players.get(name));
+                prep.setInt(2, check(name));
                 prep.executeUpdate();
             }
-            prep.getConnection().commit();
+            connection.commit();
         } catch (NullPointerException e) {
             plugin.getLogger().warning("An error occurred while handling a prepared statement: " + e.getMessage());
         } catch (SQLException e) {
@@ -157,11 +157,11 @@ public class Database {
      */
     public int check(String name) {
         Integer level = players.get(name);
-        if (level != null) {
+        if (level != null && level > 0) {
             return level;
         }
         level = 0;
-        PreparedStatement prep = prepare("SELECT * FROM orbsuite_players WHERE name LIKE ? LIMIT 1;");
+        PreparedStatement prep = prepare("SELECT * FROM orbsuite_players WHERE name = ? LIMIT 1;");
         try {
             prep.setString(1, name);
             ResultSet result = prep.executeQuery();
@@ -171,9 +171,7 @@ public class Database {
         } catch (SQLException e) {
             plugin.getLogger().warning("An error occurred while fetching a player record: " + e.getMessage());
         }
-        if (level > 0) {
-            players.put(name, level);
-        }
+        players.put(name, level);
         return level;
     }
 

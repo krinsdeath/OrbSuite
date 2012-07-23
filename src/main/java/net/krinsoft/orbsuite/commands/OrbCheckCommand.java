@@ -42,7 +42,7 @@ public class OrbCheckCommand extends OrbCommand {
         }
         Player p = plugin.getServer().getPlayer(target);
         if (p != null) {
-            message(sender, p.getName() + " has " + p.getTotalExperience() + " experience.");
+            message(sender, (p.getName().equals(sender.getName()) ? "You have " : p.getName() + " has ") + p.getTotalExperience() + " experience.");
         }
     }
 }
