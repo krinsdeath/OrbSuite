@@ -1,6 +1,7 @@
 package net.krinsoft.orbsuite;
 
 import com.pneumaticraft.commandhandler.CommandHandler;
+import net.krinsoft.orbsuite.commands.OrbBaseCommand;
 import net.krinsoft.orbsuite.commands.OrbCheckCommand;
 import net.krinsoft.orbsuite.commands.OrbDepositCommand;
 import net.krinsoft.orbsuite.commands.OrbWithdrawCommand;
@@ -111,6 +112,7 @@ public class OrbCore extends JavaPlugin {
         commands = new CommandHandler(this, perms);
 
         // [BASIC] orb commands
+        commands.registerCommand(new OrbBaseCommand(this));
         commands.registerCommand(new OrbCheckCommand(this));
         commands.registerCommand(new OrbDepositCommand(this));
         commands.registerCommand(new OrbWithdrawCommand(this));
