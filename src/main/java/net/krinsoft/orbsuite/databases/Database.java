@@ -123,7 +123,7 @@ public class Database {
      * @return The player's new total experience points in storage.
      */
     public int deposit(String name, int pts) {
-        Integer points = players.get(name);
+        Integer points = check(name);
         if (points == null) {
             points = 0;
         }
@@ -139,7 +139,7 @@ public class Database {
      * @return The total amount of points withdrawn.
      */
     public int withdraw(String name, int pts) {
-        Integer points = players.get(name);
+        Integer points = check(name);
         if (points == null) {
             points = 0;
         }
@@ -157,7 +157,7 @@ public class Database {
      */
     public int check(String name) {
         Integer level = players.get(name);
-        if (level != null && level > 0) {
+        if (level != null) {
             return level;
         }
         level = 0;
