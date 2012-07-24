@@ -104,7 +104,7 @@ public class OrbCore extends JavaPlugin {
     }
 
     private void initializeEvents() {
-        getServer().getPluginManager().registerEvents(new OrbListener(this), this);
+        //getServer().getPluginManager().registerEvents(new OrbListener(this), this);
     }
 
     private void initializeCommands() {
